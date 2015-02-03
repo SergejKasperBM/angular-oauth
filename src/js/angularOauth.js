@@ -40,7 +40,7 @@ angular.module('angularOauth', []).
       authorizationEndpoint: REQUIRED_AND_MISSING,
       localStorageName: 'accessToken',
       verifyFunc: REQUIRED_AND_MISSING,
-      scopes: []
+      scopes: [],
       state: ''
     };
 
