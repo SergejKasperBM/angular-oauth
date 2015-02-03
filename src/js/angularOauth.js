@@ -41,6 +41,7 @@ angular.module('angularOauth', []).
       localStorageName: 'accessToken',
       verifyFunc: REQUIRED_AND_MISSING,
       scopes: []
+      state: null
     };
 
     this.extendConfig = function(configExtension) {
@@ -72,7 +73,8 @@ angular.module('angularOauth', []).
           response_type: config.responseType || RESPONSE_TYPE,
           client_id: config.clientId,
           redirect_uri: config.redirectUri,
-          scope: config.scopes.join(" ")
+          scope: config.scopes.join(" "),
+          state: config.state
         }
       };
 
