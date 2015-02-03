@@ -41,7 +41,7 @@ angular.module('angularOauth', []).
       localStorageName: 'accessToken',
       verifyFunc: REQUIRED_AND_MISSING,
       scopes: []
-      state: null
+      state: ''
     };
 
     this.extendConfig = function(configExtension) {
