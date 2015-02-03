@@ -185,11 +185,12 @@ angular.module('angularOauth', []).
             event = event.originalEvent || event;
             if (event.source == popup && event.origin == window.location.origin) {
               $rootScope.$apply(function() {
-                if (event.data.access_token) {
+                deferred.resolve(event.data)
+                /*if (event.data.access_token) {
                   deferred.resolve(event.data)
                 } else {
                   deferred.reject(event.data)
-                }
+                }*/
               })
             }
           });
