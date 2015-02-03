@@ -190,7 +190,7 @@ angular.module('angularOauth', []).
                   deferred.resolve(event.data)
                 } else {
                   deferred.reject(event.data)
-                }*/
+                }
               })
             }
           });
@@ -220,21 +220,22 @@ angular.module('angularOauth', []).
      *
      * @returns Object.<(string|boolean)>
      */
-    function parseKeyValue(/**string*/keyValue) {
-      var obj = {}, key_value, key;
-      angular.forEach((keyValue || "").split('&'), function(keyValue){
-        if (keyValue) {
-          key_value = keyValue.split('=');
-          key = decodeURIComponent(key_value[0]);
-          obj[key] = angular.isDefined(key_value[1]) ? decodeURIComponent(key_value[1]) : true;
-        }
-      });
-      return obj;
+    function getSearchParameters() {
+          var prmstr = window.location.search.substr(1);
+          return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
     }
 
-    var queryString = $location.path().substring(1);  // preceding slash omitted
-    var params = parseKeyValue(queryString);
+    function transformToAssocArray( prmstr ) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
 
+    var params = getSearchParameters();
     // TODO: The target origin should be set to an explicit origin.  Otherwise, a malicious site that can receive
     //       the token if it manages to change the location of the parent. (See:
     //       https://developer.mozilla.org/en/docs/DOM/window.postMessage#Security_concerns)
