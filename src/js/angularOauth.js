@@ -190,7 +190,7 @@ angular.module('angularOauth', []).
                   deferred.resolve(event.data)
                 } else {
                   deferred.reject(event.data)
-                }
+                }*/
               })
             }
           });
